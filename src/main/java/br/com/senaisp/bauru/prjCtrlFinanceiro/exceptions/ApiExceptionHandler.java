@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
-	@ExceptionHandler(RecursoNaoEncontradoException.class)
-	public ResponseEntity<Map<String, String>> naoEncontrado(RuntimeException ex) {
-		return ResponseEntity.status(404).body(Map.of("erro", ex.getMessage()));
-	}
-
-	@ExceptionHandler(IllegalArgumentException.class)
-	public ResponseEntity<Map<String, String>> requisicaoInvalida(RuntimeException ex) {
-		return ResponseEntity.badRequest().body(Map.of("erro", ex.getMessage()));
-	}
-
-	@ExceptionHandler(BadCredentialsException.class)
-	public ResponseEntity<Map<String, String>> credenciaisInvalidas(BadCredentialsException ex) {
-		return ResponseEntity.status(401).body(Map.of("erro", "Credenciais inválidas"));
-	}
+    @ExceptionHandler(RecursoNaoEncontradoException.class)
+    public ResponseEntity<Map<String, String>> naoEncontrado(RuntimeException ex) {
+        return ResponseEntity.status(404).body(Map.of("erro", ex.getMessage()));
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, String>> requisicaoInvalida(RuntimeException ex) {
+        return ResponseEntity.badRequest().body(Map.of("erro", ex.getMessage()));
+    }
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Map<String, String>> credenciaisInvalidas(
+        BadCredentialsException ex) {
+      return ResponseEntity.status(401)
+        .body(Map.of("erro", "Credenciais inválidas"));
+    }
 
 }
